@@ -1,0 +1,146 @@
+---
+title: Getting Started with IDSMK
+description: Set up your IDSMK account and complete your first steps to begin using the platform efficiently.
+---
+
+## Prerequisites
+
+Before starting, ensure you have the following ready:
+
+<Callout kind="info">
+
+- A valid email address for account verification
+- Access to a modern web browser like Chrome or Firefox
+- Optional: Node.js `{version >= 18}` installed for API examples
+
+</Callout>
+
+Review the [Introduction](/introduction) for platform overview if needed.
+
+## Create Your IDSMK Account
+
+Sign up takes under 2 minutes. Follow these steps to get started.
+
+<Steps>
+  <Step title="Visit Signup Page" icon="external-link">
+    Navigate to `https://dashboard.example.com/signup`.
+  </Step>
+  <Step title="Enter Details" icon="user">
+    Provide your email, create a strong password, and agree to terms.
+  </Step>
+  <Step title="Verify Email" icon="mail">
+    Check your inbox for the verification link from IDSMK and click it.
+  </Step>
+  <Step title="Complete Onboarding" icon="check-circle">
+    Answer basic questions about your use case to personalize your dashboard.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Use a business email for account recovery and team invites.
+</Callout>
+
+## Initial Configuration
+
+Set up your API access and basic settings.
+
+<Tabs>
+  <Tab title="Web Dashboard" icon="monitor">
+    Log in at `https://dashboard.example.com`.
+
+    1. Go to **Settings > API Keys**.
+    2. Click **Generate New Key**.
+    3. Copy the key (starts with `idsmk_`).
+
+    Store it securely as `YOUR_API_KEY`.
+  </Tab>
+  <Tab title="CLI Setup" icon="terminal">
+    Install the IDSMK CLI:
+
+````bash
+npm install -g @idsmk/cli
+````
+
+    Authenticate:
+
+````bash
+idsmk auth login
+# Enter YOUR_API_KEY when prompted
+````
+  </Tab>
+</Tabs>
+
+## Access the Dashboard
+
+Once configured, access your personalized dashboard at `https://dashboard.example.com`. Here you monitor activity, view analytics, and manage integrations.
+
+<Image
+  src="https://via.placeholder.com/800x400/32b4c5/white?text=IDSMK+Dashboard"
+  alt="IDSMK dashboard overview showing analytics and settings"
+  width="800"
+  height="400"
+/>
+
+Key sections include **Main of IDSMK** for core operations and **Analytics** for insights.
+
+## Make Your First API Action
+
+Test connectivity with a simple status check. Replace `YOUR_API_KEY` with your key.
+
+<Request tabs="JavaScript,cURL" show-lines="true">
+  ````javascript
+  const response = await fetch('https://api.example.com/v1/status', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer YOUR_API_KEY`,
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await response.json();
+  console.log(data);
+  ````
+
+  ````bash
+  curl -X GET https://api.example.com/v1/status \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json"
+  ````
+</Request>
+
+<Response tabs="200">
+````json
+{
+  "status": "active",
+  "version": "1.0.0",
+  "uptime": "99.9%"
+}
+````
+</Response>
+
+<Callout kind="success">
+  Success! Your API is ready. Response confirms platform status.
+</Callout>
+
+## Next Steps
+
+Explore more with these resources:
+
+<Columns cols={3}>
+  <Card title="Authentication" icon="lock" href="/authentication">
+    Secure your API calls with advanced auth methods.
+  </Card>
+  <Card title="Main Features" icon="zap" href="/introduction">
+    Dive into core IDSMK capabilities.
+  </Card>
+  <Card title="Configuration" icon="settings" href="/configuration">
+    Customize settings for your needs.
+  </Card>
+</Columns>
+
+<Expandable title="Troubleshooting Common Issues" default-open="false">
+
+- **Email not received?** Check spam folder or resend from login page.
+- **API key invalid?** Regenerate in dashboard settings.
+- **Dashboard slow?** Clear browser cache and retry.
+
+</Expandable>
